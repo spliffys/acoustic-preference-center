@@ -74,6 +74,92 @@
   
     });
   </script>
+  
+  <!--start script to parse URL parameters to prepopulate for known guests clicking from email -->
+  <script>
+    const queryString = window.location.search;
+  
+    const urlParams = new URLSearchParams(queryString);
+  
+    const email = urlParams.get('Email');
+  
+    const firstName = urlParams.get('inputFirstName');
+  
+    const lastName = urlParams.get('inputLastName');
+  
+    const city = urlParams.get('inputCity');
+  
+    const state = urlParams.get('inputStateProvence');
+  
+    const zip = urlParams.get('inputZip');
+    
+    const phoneNumber = urlParams.get('inputPhone');
+  
+    const unsubscribeReq = urlParams.get('unsubscribe');
+    console.log("unsub value:", unsubscribeReq)
+    
+    const emailGeneralOptin = urlParams.get('emailGeneralOptin');
+    
+    const emailSpecificOptin = urlParams.get('emailSpecificOptin');
+    
+    const smsGeneralOptin = urlParams.get('smsGeneralOptin');
+    
+    const smsSpecificOptin = urlParams.get('smsSpecificOptin');
+    
+  </script>
+  
+  
+  
+  <!-- start to display snooze and unsubscribe for only people that have an email address -->
+  <script>
+    $(document).ready(function() {
+  
+      //start looking to see if there is a value for email to display unsubscribe or snooze options 
+      var strValue = email;
+      var strValueQueryString = queryString
+  
+      // Test whether strValue is empty or is None
+      if (strValue) {
+        //do something
+        console.log('test if string value that is not empty or none');
+        //document.getElementById("emailRequired").style.display = "block"; 
+      }
+  
+      // Test whether strValue is empty, but not None 
+      else if (strValue === "" || strValueQueryString === "" || strValue == null) {
+        console.log('we have an string value of none');
+        //document.getElementById("north").style.display = "none";
+        //document.getElementById("south").style.display = "none";
+  
+        document.getElementById("emailRequired").style.display = "none";
+      };
+  
+      //start to look if there is a value for unsubscribe to display the popover, alerting people they need to click to unsub
+  
+      var strValueUnsub = unsubscribeReq;
+      var strValueQueryString = queryString;
+  
+      // Test whether strValue is empty or is None
+      if (strValueUnsub) {
+        //do something
+        console.log('we have unsub value, show popover');
+        //document.getElementById("emailRequired").style.display = "block";
+        //document.getElementsByClassName("popOverUnSub").style.display = "block"; 
+        //var popOverToggler = 'show';
+      }
+  
+      // Test whether strValue is empty, but not None 
+      else if (strValueUnsub === "" || strValueQueryString === "" || strValueUnsub == null) {
+        console.log('we dont have unsub value, hide popover');
+        //document.getElementById("north").style.display = "none";
+        document.getElementsByClassName("popOverUnSub").style.display = "none";
+        //var popOverToggler = 'hide';
+  
+      };
+  
+  
+    });
+  </script>
 
 
 </head>
@@ -201,7 +287,50 @@
             <hr class="my-4">
 
             <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
-
+            
+            <!-- place the parameters in the query string into the form -->
+            <script>
+            
+              document.getElementById('inputEmailAddress').value = email;
+            
+              document.getElementById('inputFirstName').value = firstName;
+            
+              document.getElementById('inputLastName').value = lastName;
+            
+              document.getElementById('inputCity').value = city;
+            
+              document.getElementById('inputStateProvence').value = state;
+            
+              document.getElementById('inputZip').value = zip;
+            
+              document.getElementById('inputPhone').value = phoneNumber;
+              
+            </script>
+            
+            <!-- from the parameters in the query string toggle the checkbox to true -->
+            <script>
+              if (emailGeneralOptin == 'Yes') {
+                console.log('we have true for General Info Email');
+                document.getElementById("emailGeneralChecked").checked = true;
+              };
+              
+              if (emailSpecificOptin == 'Yes') {
+                console.log('we have true for General Info Email');
+                document.getElementById("emailSpecificChecked").checked = true;
+              };
+              
+              if (smsGeneralOptin == 'Yes') {
+                console.log('we have true for General Info Email');
+                document.getElementById("smsGeneralChecked").checked = true;
+              };
+              
+              if (smsSpecificOptin == 'Yes') {
+                console.log('we have true for General Info Email');
+                document.getElementById("smsSpecificChecked").checked = true;
+              };
+              
+            </script>
+            
             <small>* Indicates Required Field</small>
           </form>
         </div>
