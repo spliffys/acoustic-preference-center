@@ -363,6 +363,29 @@
             </script>
             <!-- end State autofill from zip code script -->
             
+            <!--setting values to no if someone doesn't select a subscription option -->
+            <script>
+              document.getElementById("preference-center-form").addEventListener("submit", function(e) {
+                
+                if (document.getElementById("emailGeneralChecked").checked) {
+                  document.getElementById('emailGeneralUnchecked').disabled = true;
+                }
+                
+                if (document.getElementById("emailSpecificChecked").checked) {
+                  document.getElementById('emailSpecificUnchecked').disabled = true;
+                }
+                
+                if (document.getElementById("smsGeneralChecked").checked) {
+                  document.getElementById('smsGeneralUnchecked').disabled = true;
+                }
+                
+                if (document.getElementById("smsSpecificChecked").checked) {
+                  document.getElementById('smsSpecificUnchecked').disabled = true;
+                }
+                
+              });
+            </script>
+            
             <!-- place the parameters in the query string into the form -->
             <script>
             
