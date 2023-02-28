@@ -173,7 +173,7 @@
         <h2 class="text-center">Preference Center Form</h2>
         <p class="lead text-left">Below is an example preference center form built with Bootstrap’s form for Acoustic Campaign. The intention of this form is to post to Acoustic, however, the sample below is not posting to Acoustic Campaign as this is just a demo. You'll have to connect the pieces to make this work with your Acoustic instance. Additionally, you'll need to add your own Google API Keys for the Zip code lookup and captcha to work properly.
         <br><br>
-        Adding parameters to the URL will display other options like Snoozing and Unsubscribing. Try adding <code>?unsubscribe=yes&Email=abc@domain.com&inputFirstName=kc&inputLastName=smiles&inputZip=80217&inputCity=Funtown&inputStateProvence=CO&inputPhone=3031231234&emailGeneralOptin=Yes&smsSpecificOptin=Yes</code> to the url.
+        Adding parameters to the URL will display other options like Snoozing and Unsubscribing. Try adding <code>?unsubscribe=yes&Email=abc@domain.com&inputFirstName=kc&inputLastName=smiles&inputZip=80217&inputCity=Funtown&inputStateProvence=CO&inputPhone=3031231234&emailGeneralOptin=Yes&smsSpecificOptin=Yes#preference-center-form-unsubscribe</code> to the url.
         </p>
       </div>
 
@@ -194,7 +194,23 @@
               <form method="post" id="preference-center-form-unsubscribe" action="" pageId="" siteId="" parentPageId="">
                 <h5 class="card-title"><i class="fa-solid fa-comment-slash"></i> Unsubscribe</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                
+                <!-- required for popover -->
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                    $('#btnUnsubPopover').popover('show');
+                  });
+                </script>
+                
                 <input type="submit" class="btn btn-outline-primary unsubscribe-popover" value="Click to Unsubscribe" id="btnUnsubPopover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="You're Not Unsubscribed Yet" data-bs-content="<span class='text-danger'><strong>Click the button to Unsubscribe</strong></span>">
+                
+                <script>
+                  var popover = new bootstrap.Popover(document.querySelector('.unsubscribe-popover'), {
+                    html: true,
+                    customClass: 'popOverUnSub',                     
+                  });
+                </script>
+                
               </form>
             </div>
           </div>
