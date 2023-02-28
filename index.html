@@ -19,6 +19,61 @@
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/b97c4a01b6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  
+  <!-- Jquery full library being used for google maps look up with zipcodes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.js"></script>
+  
+  <!-- Form validation -- jquery validate -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+  
+  <!-- jquery validate -->
+  <script>
+    $().ready(function() {
+  
+      // validate signup form on keyup and submit
+      $("#preference-center-form").validate({
+        rules: {
+          "First Name": "required",
+          "Last Name": "required",
+          "Email": {
+            required: true,
+            email: true
+          },
+          "Mailing Zip": {
+            required: true,
+            digits: true,
+            minlength: 5,
+            maxlength: 5
+          },
+          "Phone": {
+            required: function() {
+              if ($("#smsGeneralChecked").is(':checked') || $("#smsSpecificChecked").is(':checked')) {
+                return true;
+              } else {
+                return false;
+              }
+            },
+            digits: true,
+            phoneUS: true
+          }
+        },
+        messages: {
+          "First Name": "Please enter your first name",
+          "Last Name": "Please enter your last name",
+          "Email": "Please enter a valid email address",
+          "Mailing Zip": "Please enter a valid zip code, numbers only.",
+          "Phone": "Please enter a valid phone number, this is required for SMS. Numbers only."
+        },
+        submitHandler: function() {
+          alert("submitted!");
+          form.submit();
+        }
+      });
+  
+  
+    });
+  </script>
 
 
 </head>
