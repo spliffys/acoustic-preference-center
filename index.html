@@ -4,9 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.88.1">
+  <meta name="author" content="Casey Davis">
   <title>Preference Center · Bootstrap v5.1</title>
   
   <!-- Hosted/CDN Bootstrap core JS -->
@@ -181,7 +179,23 @@
         <div class="col-md-5 col-lg-4 order-md-last" id="emailRequired">
           <div class="card mb-3" style="width: 18rem;">
             <div class="card-body">
-              <form method="post" id="preference-center-form-unsubscribe" action="" pageId="" siteId="" parentPageId="">
+              <form method="post" id="preference-center-form-snooze" action="" pageId="" siteId="" parentPageId="">
+                <input type="hidden" class="form-control" name="Email" id="inputEmailAddress3">
+                <input type="hidden" class="form-control" name="First Name" id="inputFirstName3">
+                
+                <!--javascript to pull the value from above email field into this form so it can be properly submitted -->
+                <script>
+                  var firstEmail = document.getElementById("inputEmailAddress");
+                  var thirdEmail = document.getElementById("inputEmailAddress3");
+                  var firstFirstName = document.getElementById("inputFirstName");
+                  var thirdFirstName = document.getElementById("inputFirstName3");
+                
+                  document.getElementById("preference-center-form-unsubscribe").addEventListener("submit", function(g) {
+                    secondEmail.value = firstEmail.value;
+                    secondFirstName.value = firstFirstName.value;
+                
+                  });
+                </script>
                 <h5 class="card-title"><i class="fa-solid fa-bed"></i> Snooze</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <input type="submit" class="btn btn-outline-primary" value="Click to Snooze">
@@ -192,6 +206,23 @@
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <form method="post" id="preference-center-form-unsubscribe" action="" pageId="" siteId="" parentPageId="">
+                <input type="hidden" class="form-control" name="Email" id="inputEmailAddress2">
+                <input type="hidden" class="form-control" name="First Name" id="inputFirstName2">
+                
+                <!--javascript to pull the value from above email field into this form so it can be properly submitted -->
+                <script>
+                  var firstEmail = document.getElementById("inputEmailAddress");
+                  var secondEmail = document.getElementById("inputEmailAddress2");
+                  var firstFirstName = document.getElementById("inputFirstName");
+                  var secondFirstName = document.getElementById("inputFirstName2");
+                
+                  document.getElementById("preference-center-form-unsubscribe").addEventListener("submit", function(f) {
+                    secondEmail.value = firstEmail.value;
+                    secondFirstName.value = firstFirstName.value;
+                
+                  });
+                </script>
+                
                 <h5 class="card-title"><i class="fa-solid fa-comment-slash"></i> Unsubscribe</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 
